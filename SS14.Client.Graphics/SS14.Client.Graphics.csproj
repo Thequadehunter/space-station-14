@@ -125,8 +125,6 @@
     <Compile Include="View\Viewport.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Utility\SfmlExt.cs" />
-    <Compile Include="Utility\SfmlCompatibility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RobustEngine\RobustEngine.csproj">
