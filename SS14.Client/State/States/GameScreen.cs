@@ -595,17 +595,18 @@ namespace SS14.Client.State.States
 
             #region Object clicking
 
+            var controlledtransform = PlayerManager.ControlledEntity.GetComponent<ITransformComponent>();
             // Convert our click from screen -> world coordinates
             float checkDistance = 1.5f;
             // Find all the entities near us we could have clicked
             IEnumerable<IEntity> entities =
                 _entityManager.GetEntitiesInRange(
-                    PlayerManager.ControlledEntity.GetComponent<ITransformComponent>().Position,
+                    controlledtransform.Position,
                     checkDistance);
 
             // See which one our click AABB intersected with
             var clickedEntities = new List<ClickData>();
-            var clickedWorldPoint = new Vector2(MousePosWorld.X, MousePosWorld.Y);
+            var clickedWorldPoint = new WorldCoordinates(MousePosWorld.X, MousePosWorld.Y, controlledtransform.MapID);
             foreach (IEntity entity in entities)
             {
                 if (entity.TryGetComponent<IClientClickableComponent>(out var component)
